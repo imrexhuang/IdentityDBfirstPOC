@@ -1,0 +1,39 @@
+﻿@model IEnumerable<IdentityDBfirstPOC.Models.ViewModels.SpendingTrackerViewModel>
+
+@using IdentityDBfirstPOC.Helper
+
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>#</th>
+                <th>@Html.DisplayNameFor(model => model.TYPE)</th>
+                <th>@Html.DisplayNameFor(model => model.DATE)</th>
+                <th>@Html.DisplayNameFor(model => model.AMOUMT)</th>
+                <th></th>
+            </tr>
+
+            @{int i = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@Html.DisplayCategory( item.TYPE)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DATE)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AMOUMT)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+                i++;
+            }
+
+        </table>
+    </div>
+</div>

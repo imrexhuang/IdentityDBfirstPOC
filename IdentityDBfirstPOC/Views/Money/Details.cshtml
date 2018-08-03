@@ -1,0 +1,43 @@
+﻿@model IdentityDBfirstPOC.Models.ViewModels.SpendingTrackerViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutMoney.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>明細</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AMOUMT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AMOUMT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REMARK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REMARK)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "List")
+</p>
