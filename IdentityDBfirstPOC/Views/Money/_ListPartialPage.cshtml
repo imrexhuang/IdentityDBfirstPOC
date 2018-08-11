@@ -26,9 +26,9 @@
                     <td>@Html.DisplayFor(modelItem => item.DATE)</td>
                     <td>@Html.DisplayFor(modelItem => item.AMOUMT)</td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }).If(User.IsInRole("Admin")) |
                         @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }).If(User.IsInRole("Admin"))
                     </td>
                 </tr>
                 i++;
