@@ -49,12 +49,14 @@ namespace IdentityDBfirstPOC.Controllers
         }
 
         // GET: Money/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Money/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,TYPE,DATE,AMOUMT,REMARK")]
@@ -73,6 +75,7 @@ namespace IdentityDBfirstPOC.Controllers
         }
 
         // GET: Money/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Guid id)
         {
             if (id == null)
@@ -90,6 +93,7 @@ namespace IdentityDBfirstPOC.Controllers
         }
 
         // POST: Money/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,TYPE,DATE,AMOUMT,REMARK")]
@@ -109,6 +113,7 @@ namespace IdentityDBfirstPOC.Controllers
 
         // POST: Money/Delete/5
         //[HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -131,6 +136,7 @@ namespace IdentityDBfirstPOC.Controllers
             return View(_accountbookService.Lookup());
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
