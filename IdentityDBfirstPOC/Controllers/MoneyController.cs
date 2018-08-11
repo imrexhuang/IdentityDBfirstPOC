@@ -10,6 +10,9 @@ using IdentityDBfirstPOC.Service;
 
 namespace IdentityDBfirstPOC.Controllers
 {
+    //登入之後才能夠使用的功能
+    //http://kevintsengtw.blogspot.com/2013/11/aspnet-mvc.html
+    [Authorize]
     public class MoneyController : Controller
     {
         private readonly AccountbookService _accountbookService;
