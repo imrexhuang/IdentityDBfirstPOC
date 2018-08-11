@@ -205,6 +205,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\AccountBookHelper.cs" />
+    <Compile Include="Helper\AuthLinkHelper.cs" />
     <Compile Include="Models\AccountBook.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
