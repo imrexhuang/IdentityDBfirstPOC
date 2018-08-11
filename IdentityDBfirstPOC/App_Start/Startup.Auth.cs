@@ -19,6 +19,11 @@ namespace IdentityDBfirstPOC
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
+            // http://ikevin.tw/2018/07/15/asp-net-mvc-identity-%E4%BD%BF%E7%94%A8role%E4%BE%86%E5%88%A4%E6%96%B7%E5%89%8D%E5%BE%8C%E5%8F%B0%E4%BD%BF%E7%94%A8%E8%80%85/
+            //增加角色的OwinContext
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
+
+
             // 讓應用程式使用 Cookie 儲存已登入使用者的資訊
             // 並使用 Cookie 暫時儲存使用者利用協力廠商登入提供者登入的相關資訊；
             // 在 Cookie 中設定簽章

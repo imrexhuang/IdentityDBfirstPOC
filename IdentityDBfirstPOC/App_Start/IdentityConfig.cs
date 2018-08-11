@@ -106,4 +106,19 @@ namespace IdentityDBfirstPOC
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+
+    // http://ikevin.tw/2018/07/15/asp-net-mvc-identity-%E4%BD%BF%E7%94%A8role%E4%BE%86%E5%88%A4%E6%96%B7%E5%89%8D%E5%BE%8C%E5%8F%B0%E4%BD%BF%E7%94%A8%E8%80%85/
+    //增加角色管理員相關的設定
+    public class ApplicationRoleManager : RoleManager<IdentityRole>
+    {
+        public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore) : base(roleStore)
+        {
+        }
+
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        {
+            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
+        }
+    }
+
 }

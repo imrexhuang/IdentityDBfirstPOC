@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IdentityDBfirstPOC.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IdentityDBfirstPOC.Controllers
 {
@@ -156,7 +157,25 @@ namespace IdentityDBfirstPOC.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+
+                    // http://ikevin.tw/2018/07/15/asp-net-mvc-identity-%E4%BD%BF%E7%94%A8role%E4%BE%86%E5%88%A4%E6%96%B7%E5%89%8D%E5%BE%8C%E5%8F%B0%E4%BD%BF%E7%94%A8%E8%80%85/
+                    //前台角色名稱
+                    var RoleName = "Member";
+                    //後台角色名稱 
+                    //var RoleName = "Admin";
+
+                    //判斷角色是否存在
+                    if (HttpContext.GetOwinContext().Get<ApplicationRoleManager>().RoleExists(RoleName) == false)
+                    {
+                        //角色不存在,建立角色
+                        var role = new IdentityRole(RoleName);
+                        await HttpContext.GetOwinContext().Get<ApplicationRoleManager>().CreateAsync(role);
+                    }
+
+                    //將使用者加入該角色
+                    await UserManager.AddToRoleAsync(user.Id, RoleName);
+
                     // 如需如何進行帳戶確認及密碼重設的詳細資訊，請前往 https://go.microsoft.com/fwlink/?LinkID=320771
                     // 傳送包含此連結的電子郵件
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
